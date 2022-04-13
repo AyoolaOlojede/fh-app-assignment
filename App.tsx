@@ -6,6 +6,8 @@ import { StyleSheet, useColorScheme} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from 'src/hooks/useCachedResources';
 import { AppNavigator } from './src/navigation/App.navigator';
+import {Provider} from 'react-redux';
+import { store } from 'src/data/store/store';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -17,10 +19,12 @@ export default function App() {
   } else {
   return (
     <SafeAreaProvider>
+      <Provider store={store}>
     <NavigationContainer theme={currentNavigationTheme}>
       <AppNavigator/>
       <StatusBar/>
     </NavigationContainer>
+    </Provider>
     </SafeAreaProvider>
   );
   }

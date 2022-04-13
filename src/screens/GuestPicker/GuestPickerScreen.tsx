@@ -3,51 +3,43 @@ import { FlatList, ScrollView, StatusBar } from 'react-native';
 import { View } from 'react-native';
 import { FHAddButton } from 'src/components/FHAddButton';
 import { FHGuestRoom } from '../../components/FHGuestRoom';
-
-
 import styles from './GuestPickerScreen.styles';
-import { useState } from 'react';
-import { Room } from '../../domain/models/Room';
+import { useDispatch, useSelector } from 'react-redux';
+import { addRoom } from 'src/data/slices/fhSlice';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+import { RootState } from 'src/data/store/store';
+
+
+
 export const GuestPickerScreen: FC<any> = () => {
-  const [rooms, setRooms] = useState<Room[]>([]);
+  //const [rooms, setRooms] = useState<Room[]>([]);
+  const dispatch= useDispatch();
+  const rooms= useSelector((state:RootState) => state.rooms);
   
   useEffect(() => {
-    setRooms((arr) => {
-      return [
-        ...arr,
-        {
-         adultsCount:1,
-         children:[],
-        },
-      ];
-    });
+    dispatch(addRoom( {
+      id:uuidv4(),
+      adultsCount:1,
+      children:[],
+     }))
   }, [])
 
   const handleAddRoom =() => {
-    setRooms((arr) => {
-      return [
-        ...arr,
-        {
-         adultsCount:1,
-         children:[],
-        },
-      ];
-    });
+    dispatch(addRoom( {
+      id:uuidv4(),
+      adultsCount:1,
+      children:[],
+     }))
   };
 
-  const handleRemoveRoom =(roomId: number) => {
-    setRooms((prevState) => {
-      const arr = [...prevState];
-      return arr.splice(-1);
-    });
-  };
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
         <View>
         <FlatList
-        data={rooms}
-        renderItem={({ item, index }) => <FHGuestRoom roomNumber={index + 1} />}
+        data={rooms.rooms}
+        renderItem={({ item, index }) => <FHGuestRoom roomNumber={index + 1}  id={item.id}/>}
         keyExtractor={(item, index) => index.toString()}
         />
          <FHAddButton title='Add Room' backgroundColor='#DAE9FA'

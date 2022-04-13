@@ -4,23 +4,27 @@ import { Text, View, TouchableNativeFeedback, Pressable } from 'react-native';
 
 import { FHRoomTitleProps } from './FHRoomTitle.interface';
 import styles from './FHRoomTitle.styles';
-import { COLORS } from 'src/themes/colors';
-import { PlusIcon } from 'src/themes/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeRoom } from 'src/data/slices/fhSlice';
+import { RootState } from 'src/data/store/store';
 
 const FHRoomTitle: FC<FHRoomTitleProps> = ({
   roomNumber,
-  onDelete,
+  id,
 }) => {
-  
-  const removeRoom = () =>{
-    onDelete;
+  const rooms= useSelector((state:RootState) => state.rooms);
+  const dispatch= useDispatch();
+  const deleteRoom = () =>{
+    dispatch(removeRoom(id));
   }
   return (
     <View style={styles.container}>
       <Text style={styles.roomTitle}>Room {roomNumber}</Text>
-      <Pressable onPress={removeRoom}>
+      {rooms.rooms.length > 1 &&
+      <Pressable onPress={deleteRoom}>
       <Text style={styles.removeText}>Remove room</Text>
       </Pressable>
+     }
     </View>
   );
 };

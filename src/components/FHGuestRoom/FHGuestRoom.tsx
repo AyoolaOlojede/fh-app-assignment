@@ -7,16 +7,17 @@ import { FHGuestRoomProps } from './FHGuestRoom.interface';
 import styles from './FHGuestRoom.styles';
 import FHGuest from '../FHGuest/FHGuest';
 import FHRoomTitle from '../FHRoomTitle/FHRoomTitle';
+import { FHChild } from '../FHChild';
 
 
-const FHGuestRoom: FC<FHGuestRoomProps> = ({ roomNumber =1
+const FHGuestRoom: FC<FHGuestRoomProps> = ({ roomNumber =1,id,
 }) => {
   return (
     <View style={styles.container}>
       <View>
-      <FHRoomTitle roomNumber={roomNumber}/>
-     <FHGuest title='Adults'/>
-     <FHGuest title='Children'/>
+      <FHRoomTitle roomNumber={roomNumber} id={id}/>
+     <FHGuest title='Adults' isChild={false}/>
+     <FHGuest title='Children' isChild={true}/>
       </View>
     </View>
   );
