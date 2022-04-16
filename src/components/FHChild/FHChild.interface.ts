@@ -1,6 +1,8 @@
 import { StyleProp, ViewStyle } from 'react-native';
 
 export interface FHChildProps {
-  roomNumber: number;
-  onRemove?: () => void;
+ title: string;
+ index: number;
+ roomId: string;
+ initialValue: number;
 }

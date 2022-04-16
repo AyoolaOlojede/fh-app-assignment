@@ -1,28 +1,27 @@
 import { StyleSheet } from 'react-native';
-import { COLORS } from 'src/themes/colors';
-import { FONT_FAMILIES, FONT_SIZES } from '../../themes/fonts';
+import { FONT_FAMILIES, FONT_SIZES } from 'src/themes/fonts';
+import { COLORS } from '../../themes/colors';
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    paddingHorizontal: 10,
   },
-  childContainer: {
+  stepperContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10,
+    marginTop: 30,
   },
   roomTitle: {
+  fontFamily: FONT_FAMILIES.interSemiBold,
+  fontSize: FONT_SIZES.xlarge,
+  color: COLORS.black,
+  marginTop: 20,
+  },
+  otherTitle: {
     fontFamily: FONT_FAMILIES.interSemiBold,
-    fontSize: FONT_SIZES.medium,
+    fontSize: FONT_SIZES.large,
     color: COLORS.black,
-    marginTop: 20,
     },
-    removeText: {
-      color: '#D83B3B',
-      fontFamily: FONT_FAMILIES.interSemiBold,
-      fontSize: FONT_SIZES.large,
-      marginTop: 30,
-    }
 });
 
 export default styles;

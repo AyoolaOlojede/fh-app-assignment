@@ -5,19 +5,20 @@ import { Text, View } from 'react-native';
 
 import { FHGuestRoomProps } from './FHGuestRoom.interface';
 import styles from './FHGuestRoom.styles';
-import FHGuest from '../FHGuest/FHGuest';
 import FHRoomTitle from '../FHRoomTitle/FHRoomTitle';
-import { FHChild } from '../FHChild';
+import { FHAdult } from '../FHAdult';
+import FHChild from '../FHChild/FHChild';
 
 
-const FHGuestRoom: FC<FHGuestRoomProps> = ({ roomNumber =1,id,
+
+const FHGuestRoom: FC<FHGuestRoomProps> = ({ index =1,roomId,
 }) => {
   return (
     <View style={styles.container}>
       <View>
-      <FHRoomTitle roomNumber={roomNumber} id={id}/>
-     <FHGuest title='Adults' isChild={false}/>
-     <FHGuest title='Children' isChild={true}/>
+      <FHRoomTitle roomNumber={index} id={roomId}/>
+     <FHAdult title='Adults' index={index} roomId={roomId} initialValue={2}/>
+     <FHChild title='Children' index={index} roomId={roomId} initialValue={0}/>
       </View>
     </View>
   );

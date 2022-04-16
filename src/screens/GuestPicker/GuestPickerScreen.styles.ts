@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     alignContent: 'center',
     paddingHorizontal: 10,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    paddingBottom: 30
   },
 
   imageBackground: {
