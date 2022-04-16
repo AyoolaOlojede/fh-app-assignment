@@ -1,3 +1,3 @@
-import FHChild from './FHChild';
+import FHGuest from './FHChild';
 
-export { FHChild };
+export { FHGuest };
