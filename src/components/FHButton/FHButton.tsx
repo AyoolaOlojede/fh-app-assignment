@@ -1,29 +1,39 @@
 import React, { FC } from 'react';
-import { Text, View, TouchableNativeFeedback } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 
 
 import { FHButtonProps } from './FHButton.interface';
 import styles from './FHButton.styles';
-import { COLORS } from 'src/themes/colors';
 
 const FHButton: FC<FHButtonProps> = ({
+  accessibilityLabel,
+  testID,
   style,
   title,
-  borderColor,
-  backgroundColor,
   color,
   disabled = false,
+  leftIcon,
+  rightIcon,
   onPress,
 }) => {
 
+  const buttonStyles = [
+    styles.container,
+    style,
+  ];
   return (
-    <View style={[styles.container, style]}>
-      <TouchableNativeFeedback onPress={onPress} disabled={disabled}>
-        <View style={[styles.textContainer, {backgroundColor,borderColor}]}>
+      <TouchableOpacity onPress={onPress} disabled={disabled}
+      accessibilityLabel={accessibilityLabel}
+      style={buttonStyles}
+      activeOpacity={1}
+      testID={testID}
+      >
+        <View style={styles.textContainer}>
+          {leftIcon}
           <Text style={[styles.text, { color }]}>{title}</Text>
+          {rightIcon}
         </View>
-      </TouchableNativeFeedback>
-    </View>
+      </TouchableOpacity>
   );
 };
 

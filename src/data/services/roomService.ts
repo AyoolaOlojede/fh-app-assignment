@@ -1,19 +1,19 @@
 import { useSelector } from "react-redux";
-import { GuestRooms } from "src/domain/models/GuestRooms";
+import { Room } from "src/domain/models/Room";
 
 class RoomService {
 
-      getChildren(guestRooms: GuestRooms, index: number) {
-        return guestRooms.rooms[index].children;
+      getChildren(guestRooms: Room[], index: number) {
+        return guestRooms[index].children;
       }
-      getChildrenCount(guestRooms: GuestRooms, index: number) {
-        return guestRooms.rooms[index].children?.length;
+      getChildrenCount(guestRooms: Room[], index: number) {
+        return guestRooms[index].children?.length;
       }
-      getAdultsCount(guestRooms: GuestRooms, index: number) {
-        return guestRooms.rooms[index].adultsCount;
+      getAdultsCount(guestRooms: Room[], index: number) {
+        return guestRooms[index].adultsCount;
       }
-      getGuestsCount(guestRooms: GuestRooms) {
-        return guestRooms.rooms.reduce(
+      getGuestsCount(guestRooms: Room[]) {
+        return guestRooms.reduce(
           (guestsCount, room) =>
             guestsCount + (room?.adultsCount ?? 0) + (room.children?.length ?? 0),
           0
@@ -22,10 +22,10 @@ class RoomService {
       getTotal(count: number,title: string) {
         return count > 1 ? `${count} ${title}s` : `${count} ${title}`;
       }
-      getTotalRooms(guestRooms: GuestRooms) {
-        return this.getTotal(guestRooms.rooms.length ?? 0, 'room');
+      getTotalRooms(guestRooms: Room[]) {
+        return this.getTotal(guestRooms.length ?? 0, 'room');
       }
-      getTotalGuests(guestRooms: GuestRooms) {
+      getTotalGuests(guestRooms: Room[]) {
         return this.getTotal(this.getGuestsCount(guestRooms) ?? 0, 'guest');
       }
 }

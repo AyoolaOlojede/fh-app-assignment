@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
     marginVertical: 100,
     borderColor: '#ccc',
   },
+  homeButton: {
+    color: COLORS.white,
+    backgroundColor: COLORS.primary
+  }
 });
 
 export default styles;

@@ -1,0 +1,3 @@
+const ROOM_SEPARATOR = '|';
+const ADULT_CHILDREN_SEPARATOR = ':';
+const CHILDREN_AGE_SEPARATOR = ',';

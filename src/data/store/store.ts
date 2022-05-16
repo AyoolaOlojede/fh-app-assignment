@@ -1,13 +1,18 @@
 import {configureStore} from  '@reduxjs/toolkit';
+import { DEFAULT_GUEST_ROOMS } from 'src/utils/guestRoomUtil';
 import fhSlice from '../slices/fhSlice';
+
 
 export const store = configureStore({
     reducer: {
-        rooms:fhSlice
+        rooms:fhSlice,
+        
+    },
+    preloadedState : {
+        rooms: DEFAULT_GUEST_ROOMS
     }
+        
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch

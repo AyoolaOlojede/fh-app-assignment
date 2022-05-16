@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
   stepperContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 30,
+    marginTop: 20,
+    marginBottom: 5
   },
   roomTitle: {
   fontFamily: FONT_FAMILIES.interSemiBold,

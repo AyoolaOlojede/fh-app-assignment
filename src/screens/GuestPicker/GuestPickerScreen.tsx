@@ -1,31 +1,29 @@
 import React, { FC, ReactElement, useEffect } from 'react';
 import { FlatList, ScrollView, StatusBar } from 'react-native';
 import { View } from 'react-native';
-import { FHAddButton } from 'src/components/FHAddButton';
+import { FHButton } from 'src/components/FHButton';
 import { FHGuestRoom } from '../../components/FHGuestRoom';
 import styles from './GuestPickerScreen.styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRoom } from 'src/data/slices/fhSlice';
+import { addRoom, reset } from 'src/data/slices/fhSlice';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { RootState } from 'src/data/store/store';
-import { FHSearchButton } from 'src/components/FHSearchButton';
 import { COLORS } from 'src/themes/colors';
 import roomService from 'src/data/services/roomService';
+import { GuestPickerScreenProps } from './GuestPickerScreen.interface';
+import { GuestRoomsResult } from 'src/utils/guestRoomUtil';
+import { PlusIcon , SearchIcon } from 'src/themes/icons';
 
 
 
-export const GuestPickerScreen: FC<any> = () => {
+export const GuestPickerScreen: FC<GuestPickerScreenProps> = (
+  {
+    onChange
+  }
+) => {
   const dispatch= useDispatch();
   const rooms= useSelector((state:RootState) => state.rooms);
-  
-  useEffect(() => {
-    dispatch(addRoom( {
-      id:uuidv4(),
-      adultsCount:2,
-      children:[],
-     }))
-  }, [])
 
   const handleAddRoom =() => {
     dispatch(addRoom( {
@@ -34,22 +32,41 @@ export const GuestPickerScreen: FC<any> = () => {
       children:[],
      }))
   };
+  useEffect(() => {
+    dispatch(reset());
+  }, [])
+  
+
+  const handleSearchRooms = () =>{
+   return GuestRoomsResult(rooms);
+  };
+  const listItemSeparator = () => {
+    return (
+      <View
+        style={styles.seperator}
+      />
+    );
+  }
+
+  const plusIcon = <PlusIcon width={30} height={30}  accessibilityLabel='AddButton'/>;
+  const searchIcon = <SearchIcon width={30} height={30}  accessibilityLabel='SearchButton'/>;
   const result='Search '+ roomService.getTotalRooms(rooms) + '.' + roomService.getTotalGuests(rooms);
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
         <View>
         <FlatList
-        data={rooms.rooms}
+        data={rooms}
         renderItem={({ item, index }) => <FHGuestRoom index={index}  roomId={item.id} key={item.id}/>}
         keyExtractor={(item, index) => index.toString()}
+        ItemSeparatorComponent={listItemSeparator}
         />
-         <FHAddButton title='Add Room' backgroundColor='#DAE9FA'
-      borderColor='#DAE9FA' color='#0071F3'
+         <FHButton title='Add Room' testID='Add Button'
+       color='#0071F3' leftIcon={plusIcon} style={styles.addButton}
       onPress={handleAddRoom}/>
         </View>
         <View>
-          <FHSearchButton title={result} color={COLORS.white} backgroundColor={COLORS.primary}/>
+          <FHButton leftIcon={searchIcon} title={result} style={styles.searchButton} color={COLORS.white}/>
         </View>
     </View>
   );

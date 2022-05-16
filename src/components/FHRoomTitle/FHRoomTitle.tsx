@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Text, View, TouchableNativeFeedback, Pressable } from 'react-native';
+import { Text, View, Pressable } from 'react-native';
 
 
 import { FHRoomTitleProps } from './FHRoomTitle.interface';
@@ -20,7 +20,7 @@ const FHRoomTitle: FC<FHRoomTitleProps> = ({
   return (
     <View style={styles.container}>
       <Text style={styles.roomTitle}>Room {roomNumber + 1}</Text>
-      {rooms.rooms.length > 1 &&
+      {rooms.length > 1 &&
       <Pressable onPress={deleteRoom}>
       <Text style={styles.removeText}>Remove room</Text>
       </Pressable>

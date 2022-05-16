@@ -12,12 +12,14 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   stepper: {
-    width: 40,
-    height: 40,
-    borderColor:'#0071F3',
+    width: 50,
+    height: 50,
+    borderColor:'#DAE9FA',
     borderWidth: 1,
     borderRadius: 6,
-    backgroundColor: '#F7FBFF'
+    backgroundColor: '#F7FBFF',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   numericText: {
     width: 60,

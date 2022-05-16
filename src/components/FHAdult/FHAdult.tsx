@@ -8,60 +8,44 @@ import styles from './FHAdult.styles';
 import FHStepper from '../FHStepper/FHStepper';
 import { useDispatch } from 'react-redux';
 import { updateGuestsCount } from 'src/data/slices/fhSlice';
+import { MinusIcon, PlusIcon } from 'src/themes/icons';
 
 
 
 const FHAdult: FC<FHAdultProps> = ({
-  title ,roomId, index ,initialValue
+  title ,roomId ,initialValue ,testID
 }) => {
+  const ICON_SIZE = 30;
   const dispatch= useDispatch();
   const [count, setCount] = useState<number>(initialValue);
-  let minValue = 1;
-  let maxValue = 8;
   let stepValue = 1;
-  const increment = () => {
-    if(count>=8)
-    {
-    setCount(maxValue)
-    dispatch(updateGuestsCount({
-      id: roomId,
-      adultsCount:maxValue,
-    }))
-    }
-    else{
+  const increment = () => { 
       setCount(count + stepValue);
         dispatch(updateGuestsCount({
           id: roomId,
           adultsCount:count + stepValue,
         }));
-    }
   }
 
   const decrement = () =>
   {
-    if(count<=minValue)
-    {
-    setCount(minValue)
-    dispatch(updateGuestsCount({
-      id: roomId,
-      adultsCount:minValue,
-    }));
-    }
-    else{
       setCount(count - stepValue)
       dispatch(updateGuestsCount({
         id: roomId,
         adultsCount:count - stepValue,
       }));
-    }
   }
+  const minusIcon=<MinusIcon width={ICON_SIZE} height={ICON_SIZE}/>;
+  const plusIcon=<PlusIcon width={ICON_SIZE} height={ICON_SIZE}/>;
   return (
-    <View>
-      <View style={styles.stepperContainer}>
+    <>
+      <View style={styles.stepperContainer} testID={testID}>
       <Text style={styles.otherTitle}>{title}</Text>
-      <FHStepper onValueDecrease={decrement} onValueIncrease={increment} counter={count}/>
+      <FHStepper onValueDecrease={decrement} onValueIncrease={increment}
+      incrementIcon={plusIcon} decrementIcon={minusIcon}
+      minValue={1} maxValue={5} counter={count}/>
       </View>
-    </View>
+    </>
   );
 };
 

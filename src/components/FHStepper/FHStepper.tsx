@@ -9,17 +9,24 @@ import styles from './FHStepper.styles';
 const FHStepper: FC<FHStepperProps> = ({
   onValueIncrease,
   onValueDecrease,
-  counter
+  counter,
+  minValue,
+  maxValue,
+  testID,
+  accessibilityLabel,
+  incrementIcon,
+  decrementIcon
 }) => {
-
+  const isDecreaseDisabled = counter === minValue;
+  const isIncreaseDisabled = counter === maxValue;
   return (
-    <View style={styles.adultContainer}>
-        <TouchableOpacity style={styles.stepper} onPress={onValueDecrease}>
-          <MinusIcon width={40} height={40}/>
+    <View style={styles.adultContainer} accessibilityLabel='Step Counter'>
+        <TouchableOpacity disabled={isDecreaseDisabled} style={styles.stepper} onPress={onValueDecrease} testID={testID}>
+          {decrementIcon}
         </TouchableOpacity>
         <Text style={styles.numericText}>{counter}</Text>
-        <TouchableOpacity style={styles.stepper} onPress={onValueIncrease}>
-          <PlusIcon width={40} height={40}/>
+        <TouchableOpacity disabled={isIncreaseDisabled} style={styles.stepper} onPress={onValueIncrease} testID={testID}>
+          {incrementIcon}
         </TouchableOpacity>
       </View>
   );

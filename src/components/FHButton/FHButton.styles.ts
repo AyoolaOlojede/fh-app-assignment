@@ -1,18 +1,20 @@
 import { StyleSheet } from 'react-native';
+import { FONT_FAMILIES, FONT_SIZES } from '../../themes/fonts';
 
 const styles = StyleSheet.create({
   container: {
     borderRadius: 6,
-    overflow: 'hidden',
+    marginTop: 20,
   },
   textContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     height: 50,
+    flexDirection: 'row'
   },
   text: {
-    fontWeight: 'bold',
-    fontSize: 14,
+    fontFamily: FONT_FAMILIES.interSemiBold,
+    fontSize: FONT_SIZES.large,
   },
 });
 

@@ -23,6 +23,20 @@ const styles = StyleSheet.create({
     marginVertical: 100,
     borderColor: '#ccc',
   },
+  addButton: {
+    borderColor:'#DAE9FA',
+    borderWidth: 1,
+    backgroundColor:'#F7FBFF'
+  },
+ searchButton: {
+    backgroundColor: COLORS.primary
+  },
+  seperator: {
+    height: 1,
+    width: "100%",
+    backgroundColor: "#EFF2F6",
+    marginVertical: 20
+  }
 });
 
 export default styles;

@@ -24,7 +24,7 @@ export const HomeScreen: FC<any> = () => {
         resizeMode="contain"
       />
         <View style={styles.card}>
-          <FHButton title='Search'color={COLORS.white} backgroundColor={COLORS.primary} onPress={handleShowModal}/>
+          <FHButton title='Search' style={styles.homeButton} color={COLORS.white} onPress={handleShowModal}/>
         </View>
     </View>
   );
