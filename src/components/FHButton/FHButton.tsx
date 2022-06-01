@@ -11,9 +11,9 @@ const FHButton: FC<FHButtonProps> = ({
   style,
   title,
   color,
-  disabled = false,
   leftIcon,
   rightIcon,
+  disabled,
   onPress,
 }) => {
 

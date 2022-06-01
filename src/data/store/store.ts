@@ -5,8 +5,7 @@ import fhSlice from '../slices/fhSlice';
 
 export const store = configureStore({
     reducer: {
-        rooms:fhSlice,
-        
+        rooms:fhSlice
     },
     preloadedState : {
         rooms: DEFAULT_GUEST_ROOMS

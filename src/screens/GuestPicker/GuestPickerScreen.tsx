@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useEffect } from 'react';
+import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { FlatList, ScrollView, StatusBar } from 'react-native';
 import { View } from 'react-native';
 import { FHButton } from 'src/components/FHButton';
@@ -24,7 +24,6 @@ export const GuestPickerScreen: FC<GuestPickerScreenProps> = (
 ) => {
   const dispatch= useDispatch();
   const rooms= useSelector((state:RootState) => state.rooms);
-
   const handleAddRoom =() => {
     dispatch(addRoom( {
       id:uuidv4(),
@@ -47,14 +46,15 @@ export const GuestPickerScreen: FC<GuestPickerScreenProps> = (
       />
     );
   }
-
+  const counter =8;
+  const isDisabled = counter === rooms.length;
   const plusIcon = <PlusIcon width={30} height={30}  accessibilityLabel='AddButton'/>;
   const searchIcon = <SearchIcon width={30} height={30}  accessibilityLabel='SearchButton'/>;
   const result='Search '+ roomService.getTotalRooms(rooms) + '.' + roomService.getTotalGuests(rooms);
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
-        <View>
+        <View style={{flex: 1}}>
         <FlatList
         data={rooms}
         renderItem={({ item, index }) => <FHGuestRoom index={index}  roomId={item.id} key={item.id}/>}
@@ -63,10 +63,11 @@ export const GuestPickerScreen: FC<GuestPickerScreenProps> = (
         />
          <FHButton title='Add Room' testID='Add Button'
        color='#0071F3' leftIcon={plusIcon} style={styles.addButton}
-      onPress={handleAddRoom}/>
+      onPress={handleAddRoom} disabled={isDisabled}/>
         </View>
         <View>
-          <FHButton leftIcon={searchIcon} title={result} style={styles.searchButton} color={COLORS.white}/>
+          <FHButton leftIcon={searchIcon} title={result}
+          style={styles.searchButton} color={COLORS.white} />
         </View>
     </View>
   );

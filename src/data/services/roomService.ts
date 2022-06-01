@@ -10,7 +10,7 @@ class RoomService {
         return guestRooms[index].children?.length;
       }
       getAdultsCount(guestRooms: Room[], index: number) {
-        return guestRooms[index].adultsCount;
+        return guestRooms.length>0? guestRooms[index].adultsCount: 0;
       }
       getGuestsCount(guestRooms: Room[]) {
         return guestRooms.reduce(
@@ -18,6 +18,9 @@ class RoomService {
             guestsCount + (room?.adultsCount ?? 0) + (room.children?.length ?? 0),
           0
         );
+      }
+      getGuestsCountByRoomIndex(guestRooms: Room[], index: number) {
+        return guestRooms[index]?.adultsCount ?? 0 + (guestRooms[index].children?.length ?? 0);
       }
       getTotal(count: number,title: string) {
         return count > 1 ? `${count} ${title}s` : `${count} ${title}`;

@@ -6,9 +6,9 @@ export interface FHButtonProps {
   title: string;
   backgroundColorDisabled?: string;
   color?: string;
-  disabled?: boolean;
   leftIcon?: any;
   rightIcon?: any;
   testID?: string;
+  disabled?: boolean;
   onPress?: () => void;
 }

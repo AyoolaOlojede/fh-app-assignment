@@ -5,4 +5,5 @@ export interface FHAdultProps {
     roomId: string;
     initialValue: number;
     testID?: string;
+    index: number;
 }

@@ -10,18 +10,18 @@ const fhSlice = createSlice({
   name: 'rooms',
   initialState,
   reducers: {
-    reset: () => initialState,
-    addRoom(state, action: PayloadAction<Room>) {
+    reset: () => DEFAULT_GUEST_ROOMS,
+    addRoom(state:Room[], action: PayloadAction<Room>) {
         state.push(action.payload);
     },
-    removeRoom(state, action:PayloadAction<string>) {
+    removeRoom(state:Room[], action:PayloadAction<string>) {
         let index = state.findIndex(({ id }) => id === action.payload);
         state.splice(index, 1);
     },
-    getRooms(state, action) {
+    getRooms(state:Room[], action: { payload: any; }) {
       return action.payload;
     },
-    addChild(state, action: PayloadAction<number>) {
+    addChild(state:Room[], action: PayloadAction<number>) {
       let index = action.payload;
       const children = state[index].children;
 
@@ -30,12 +30,12 @@ const fhSlice = createSlice({
       age: 1,
     });
     },
-    removeChild(state, action: PayloadAction<number>) {
+    removeChild(state:Room[], action: PayloadAction<number>) {
       let index = action.payload;
       const children = state[index].children;
       children?.splice(index, 1);
     },
-    updateChild(state, action: PayloadAction<{index: number,
+    updateChild(state:Room[], action: PayloadAction<{index: number,
       childIndex: number,
       age: number}>) {
       const children = state[action.payload.index].children;
@@ -51,7 +51,7 @@ const fhSlice = createSlice({
   
 
     },
-    updateGuestsCount(state, action: PayloadAction<Room>) {
+    updateGuestsCount(state:Room[], action: PayloadAction<Room>) {
       let index = state.findIndex(({ id }) => id === action.payload.id);
       state[index] = {
         ...state[index],

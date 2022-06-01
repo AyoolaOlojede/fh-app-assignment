@@ -19,6 +19,9 @@ const FHStepper: FC<FHStepperProps> = ({
 }) => {
   const isDecreaseDisabled = counter === minValue;
   const isIncreaseDisabled = counter === maxValue;
+
+  //const maxGuest=6;
+  //const isUpperBound = counter < maxGuest;
   return (
     <View style={styles.adultContainer} accessibilityLabel='Step Counter'>
         <TouchableOpacity disabled={isDecreaseDisabled} style={styles.stepper} onPress={onValueDecrease} testID={testID}>

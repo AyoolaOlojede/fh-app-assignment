@@ -23,6 +23,7 @@ const FHChild: FC<FHChildProps> = ({
   const [count, setCount] = useState<number>(initialValue);
   const rooms= useSelector((state:RootState) => state.rooms);
   const chidren = roomService.getChildren(rooms, index);
+  const guestCount = roomService.getGuestsCountByRoomIndex(rooms, index);
   let stepValue = 1;
   const increment = () => {
       setCount(count + stepValue);

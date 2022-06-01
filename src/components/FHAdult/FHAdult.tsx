@@ -6,17 +6,21 @@ import { Text, View } from 'react-native';
 import { FHAdultProps } from './FHAdult.interface';
 import styles from './FHAdult.styles';
 import FHStepper from '../FHStepper/FHStepper';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateGuestsCount } from 'src/data/slices/fhSlice';
 import { MinusIcon, PlusIcon } from 'src/themes/icons';
-
+import roomService from 'src/data/services/roomService';
+import { RootState } from 'src/data/store/store';
 
 
 const FHAdult: FC<FHAdultProps> = ({
-  title ,roomId ,initialValue ,testID
+  title ,roomId ,initialValue ,testID ,index
 }) => {
+ 
   const ICON_SIZE = 30;
   const dispatch= useDispatch();
+  const rooms= useSelector((state:RootState) => state.rooms);
+  const adults = roomService.getAdultsCount(rooms,index);
   const [count, setCount] = useState<number>(initialValue);
   let stepValue = 1;
   const increment = () => { 

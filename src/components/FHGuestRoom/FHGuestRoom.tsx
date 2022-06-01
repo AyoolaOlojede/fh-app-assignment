@@ -17,7 +17,7 @@ const FHGuestRoom: FC<FHGuestRoomProps> = ({ index =1,roomId,
     <View style={styles.container}>
       <View>
       <FHRoomTitle roomNumber={index} id={roomId}/>
-     <FHAdult title='Adults'  roomId={roomId} initialValue={2}/>
+     <FHAdult title='Adults' index={index}  roomId={roomId} initialValue={2}/>
      <FHChild title='Children' index={index} roomId={roomId} initialValue={0}/>
       </View>
     </View>
